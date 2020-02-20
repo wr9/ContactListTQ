@@ -1,1 +1,1 @@
-export { default as AddContactCard } from './AddContactCard/AddContactCard';
+export { default as AddContactCard } from './AddContactCard';

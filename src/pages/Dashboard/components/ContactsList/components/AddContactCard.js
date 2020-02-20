@@ -1,4 +1,7 @@
+import React from 'react'
 import styled from 'styled-components';
+import { useHistory } from "react-router-dom";
+
 import { ReactComponent as AddIcon } from 'assets/icons/add.svg';
 
 export const Container = styled.button`
@@ -22,3 +25,20 @@ export const LabelWrapper = styled.div`
   font-weight: 400;
   line-height: 17px;
 `;
+
+const AddContactCard = () => {
+  const history = useHistory();
+
+  const redirectToContactForm = () => {
+    history.push("/create");
+  }
+
+  return (
+    <Container onClick={redirectToContactForm}>
+      <StyledAddIcon />
+      <LabelWrapper>Add new</LabelWrapper>
+    </Container>
+  );
+};
+
+export default AddContactCard;
