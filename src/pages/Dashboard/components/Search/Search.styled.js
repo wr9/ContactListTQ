@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import media from 'style/mediaQueries';
 
+import { Input } from 'common';
 import { ReactComponent as SearchIcon } from 'assets/icons/search.svg';
 
 export const Container = styled.div`
@@ -21,18 +22,14 @@ export const InputIconWrapper = styled.div`
   }
 `;
 
-export const Input = styled.input`
-  width: 100%;
+export const StyledInput = styled(Input)`
   height: inherit;
-  background-color: #ffffff;
   border: 1px solid #eaeaea;
-  border-radius: 4px;
   box-shadow: 0 2px 34px 0 #e3e3e3;
   padding-left: 24px;
   box-sizing: border-box;
-  font-size: 14px;
+  opacity: 1;
   font-weight: 700;
-  color: #bbc4c3;
 
   @media ${media.medium} {
     font-size: 18px;

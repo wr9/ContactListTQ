@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { Picker, Divider, Search, ContactsList } from './components';
+import { Picker, Search, ContactsList } from './components';
 
 import {
   PickerWrapper,
-  DividerWrapper,
+  PositionedDivider,
   SearchWrapper,
   ContactsListWrapper,
 } from './Dashboard.styled';
@@ -15,9 +15,7 @@ const Dashboard = () => {
       <PickerWrapper>
         <Picker />
       </PickerWrapper>
-      <DividerWrapper>
-        <Divider />
-      </DividerWrapper>
+        <PositionedDivider />
       <SearchWrapper>
         <Search />
       </SearchWrapper>

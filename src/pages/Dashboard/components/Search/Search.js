@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import * as searchActions from 'redux/modules/search';
 import * as searchSelectors from 'redux/selectors/search';
 
-import { Container, InputIconWrapper, Input, StyledSearchIcon } from './Search.styled';
+import { Container, InputIconWrapper, StyledInput, StyledSearchIcon } from './Search.styled';
 
 const Search = ({ query, setQuery }) => {
   const [isSearchFocused, setSearchFocus] = useState(false);
@@ -23,7 +23,7 @@ const Search = ({ query, setQuery }) => {
   return (
     <Container>
       <InputIconWrapper>
-        <Input
+        <StyledInput
           value={query}
           onChange={handleQueryChange}
           onFocus={handleSearchFocus}

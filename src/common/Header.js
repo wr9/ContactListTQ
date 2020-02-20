@@ -1,5 +1,8 @@
+import React from "react";
 import styled from 'styled-components';
 import media from 'style/mediaQueries';
+
+import LogoSrc from "assets/Logo.svg";
 
 export const Container = styled.div`
   height: 50px;
@@ -28,3 +31,13 @@ export const BottomAccent = styled.div`
   opacity: 0.3;
   margin-top: auto;
 `;
+
+
+const Header = () => (
+  <Container>
+    <Logo src={LogoSrc} alt="Typeqast logo" />
+    <BottomAccent />
+  </Container>
+);
+
+export default Header;
