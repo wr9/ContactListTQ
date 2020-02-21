@@ -30,10 +30,10 @@ export const SearchWrapper = styled.div`
 `
 
 export const ContactsListWrapper = styled.div`
-  margin: 24px 8px 24px 8px;
+  margin: 24px 8px;
 
   @media ${media.medium} {
-    margin: 60px 120px 60px 120px;
+    margin: 60px 120px;
   }
 `
 

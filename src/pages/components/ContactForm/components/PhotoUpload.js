@@ -55,6 +55,7 @@ const PhotoUpload = ({ value, onAdd, onDelete }) => {
     if (!value) {
       return;
     }
+    e.target.value = '';
     e.preventDefault();
     onDelete();
   };

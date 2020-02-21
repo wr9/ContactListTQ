@@ -5,3 +5,4 @@ export { default as MobileToolbar } from './Toolbar/MobileToolbar';
 export { default as DesktopToolbar } from './Toolbar/DesktopToolbar';
 export { default as IconLabel } from './IconLabel';
 export { default as Button } from './Button';
+export { default as Avatar } from './Avatar';

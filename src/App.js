@@ -7,7 +7,7 @@ import theme from 'style/theme';
 import store from 'redux/store';
 
 import { Header } from 'common';
-import { Dashboard, ContactForm } from 'pages';
+import { Dashboard, CreateContact, EditContact } from 'pages';
 
 const App = () => {
   return (
@@ -16,7 +16,8 @@ const App = () => {
         <Header />
         <BrowserRouter>
           <Switch>
-            <Route exact path="/create" render={props => <ContactForm {...props} />} />
+            <Route exact path="/edit/:id" render={props => <EditContact {...props} />} />
+            <Route exact path="/create" render={props => <CreateContact {...props} />} />
             <Route exact path="/" render={props => <Dashboard {...props} />} />
             <Redirect to="/" />
           </Switch>

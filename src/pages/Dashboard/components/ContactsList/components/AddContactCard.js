@@ -1,21 +1,30 @@
-import React from 'react'
+import React from 'react';
 import styled from 'styled-components';
-import { useHistory } from "react-router-dom";
+import media from 'style/mediaQueries';
+import { useHistory } from 'react-router-dom';
 
 import { ReactComponent as AddIcon } from 'assets/icons/add.svg';
 
 export const Container = styled.button`
-  height: 60px;
   border: 1px dashed ${props => props.theme.colors.primary};
   border-radius: 4px;
   opacity: 0.5;
   display: flex;
   align-items: center;
+
+  @media ${media.medium} {
+    flex-direction: column;
+    justify-content: center;
+  }
 `;
 
 export const StyledAddIcon = styled(AddIcon)`
   margin-left: 24px;
   fill: ${props => props.theme.colors.primary};
+
+  @media ${media.medium} {
+    margin-left: 0;
+  }
 `;
 
 export const LabelWrapper = styled.div`
@@ -24,17 +33,21 @@ export const LabelWrapper = styled.div`
   font-size: 14px;
   font-weight: 400;
   line-height: 17px;
+
+  @media ${media.medium} {
+    margin-left: 0;
+  }
 `;
 
-const AddContactCard = () => {
+const AddContactCard = ({ className }) => {
   const history = useHistory();
 
   const redirectToContactForm = () => {
-    history.push("/create");
-  }
+    history.push('/create');
+  };
 
   return (
-    <Container onClick={redirectToContactForm}>
+    <Container className={className} onClick={redirectToContactForm}>
       <StyledAddIcon />
       <LabelWrapper>Add new</LabelWrapper>
     </Container>

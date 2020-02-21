@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { saveContact } from 'utils';
-
 import { PhotoUpload } from './components';
-import { MobileToolbar, Button, DesktopToolbar } from 'common';
+import { MobileToolbar, DesktopToolbar } from 'common';
 import { ReactComponent as PersonIcon } from 'assets/icons/person.svg';
 import { ReactComponent as EmailIcon } from 'assets/icons/email.svg';
 import {
@@ -20,18 +18,24 @@ import {
   StyledSaveButton,
 } from './ContactForm.styled';
 
-const ContactForm = () => {
+const ContactForm = ({ onSubmit, contact = null }) => {
   const history = useHistory();
 
-  const [avatar, setAvatar] = useState('');
-  const [fullName, setFullName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phoneNumbers, setPhoneNumbers] = useState([{ label: '', value: '' }]);
+  const [avatar, setAvatar] = useState(contact.avatar);
+  const [fullName, setFullName] = useState(contact.fullName);
+  const [email, setEmail] = useState(contact.email);
+  const [phoneNumbers, setPhoneNumbers] = useState(contact.phoneNumbers);
 
   const handleAvatarAdd = e => {
+    const reader = new FileReader();
     const avatar = e.target.files[0];
-    const avatarUrl = window.URL.createObjectURL(avatar);
-    setAvatar(avatarUrl);
+
+    if (avatar) {
+      reader.onloadend = () => {
+        setAvatar(reader.result);
+      };
+      reader.readAsDataURL(avatar);
+    }
   };
 
   const handleAvatarDelete = () => {
@@ -76,9 +80,10 @@ const ContactForm = () => {
       fullName,
       email,
       phoneNumbers,
+      isFavorite: false,
     };
-    saveContact(contact).then(id => {
-      console.log(id);
+    onSubmit(contact).then(id => {
+      history.push(`/${id}`);
     });
   };
 
