@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import media from "style/mediaQueries";
+import media from 'style/mediaQueries';
 
+import * as dashboardActions from 'redux/modules/dashboard';
 import { Divider } from 'common';
 import { Picker, Search, ContactsList } from './components';
 
-export const PickerWrapper = styled.div`
+const PickerWrapper = styled.div`
   margin-top: 16px;
 
   @media ${media.medium} {
@@ -13,7 +16,7 @@ export const PickerWrapper = styled.div`
   }
 `;
 
-export const PositionedDivider = styled(Divider)`
+const PositionedDivider = styled(Divider)`
   margin: 16px 5% 0 5%;
 
   @media ${media.medium} {
@@ -21,29 +24,37 @@ export const PositionedDivider = styled(Divider)`
   }
 `;
 
-export const SearchWrapper = styled.div`
+const SearchWrapper = styled.div`
   margin-top: 24px;
 
   @media ${media.medium} {
     margin-top: 60px;
   }
-`
+`;
 
-export const ContactsListWrapper = styled.div`
+const ContactsListWrapper = styled.div`
   margin: 24px 8px;
 
   @media ${media.medium} {
     margin: 60px 120px;
   }
-`
+`;
 
-const Dashboard = () => {
+const Dashboard = ({ setDashboardParams, resetSearch }) => {
+  const { search } = useLocation();
+
+  useEffect(() => {
+    setDashboardParams(search);
+  }, [search, setDashboardParams]);
+
+  useEffect(() => resetSearch, [resetSearch]);
+
   return (
     <div>
       <PickerWrapper>
         <Picker />
       </PickerWrapper>
-        <PositionedDivider />
+      <PositionedDivider />
       <SearchWrapper>
         <Search />
       </SearchWrapper>
@@ -54,4 +65,9 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+const mapDispatchToProps = {
+  setDashboardParams: dashboardActions.setDashboardParams,
+  resetSearch: dashboardActions.resetSearchQuery,
+};
+
+export default connect(null, mapDispatchToProps)(Dashboard);

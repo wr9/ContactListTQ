@@ -2,24 +2,23 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import * as contactsActions from 'redux/modules/contacts';
-import * as contactsSelectors from 'redux/selectors/contacts';
+import * as selectors from 'redux/selectors';
 import { Container, StyledAddContactCard, StyledContactCard } from './ContactsList.styled';
 
-const ContactsList = ({ loadContacts, deleteContact, updateContact, contacts }) => {
+const ContactsList = ({ loadContacts, startDeleteProgress, updateContact, contacts }) => {
   useEffect(() => {
     loadContacts();
   }, [loadContacts]);
 
+  const handleDeleteClick = id => startDeleteProgress(id);
+
   return (
     <Container>
       <StyledAddContactCard />
-      {contacts.map((
-        contact,
-        index,
-      ) => (
+      {contacts.map((contact, index) => (
         <StyledContactCard
           contact={contact}
-          deleteContact={deleteContact}
+          onDeleteClick={handleDeleteClick}
           updateContact={updateContact}
           key={index}
         />
@@ -29,12 +28,12 @@ const ContactsList = ({ loadContacts, deleteContact, updateContact, contacts }) 
 };
 
 const mapStateToProps = state => ({
-  contacts: contactsSelectors.getContactsArray(state),
+  contacts: selectors.getDashboardContacts(state),
 });
 
 const mapDispatchToProps = {
   loadContacts: contactsActions.loadContacts,
-  deleteContact: contactsActions.deleteContact,
+  startDeleteProgress: contactsActions.startDeleteProgress,
   updateContact: contactsActions.updateContact,
 };
 

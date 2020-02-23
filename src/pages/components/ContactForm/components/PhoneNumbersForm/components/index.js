@@ -1,1 +1,1 @@
-export { default as PhoneNumberInput } from './PhoneNumberInput';
+export { default as PhoneNumberInput } from './PhoneNumberInput/PhoneNumberInput';

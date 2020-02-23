@@ -1,11 +1,9 @@
 import { combineReducers } from "redux";
 
-import picker from "./picker";
-import search from "./search";
+import dashboard from "./dashboard";
 import contacts from "./contacts";
 
 export default combineReducers({
-  picker,
-  search,
+  dashboard,
   contacts
 });

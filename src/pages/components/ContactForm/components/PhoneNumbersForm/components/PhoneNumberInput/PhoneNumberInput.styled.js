@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import media from 'style/mediaQueries';
 
@@ -52,6 +51,11 @@ export const DeletePhoneNumberButton = styled.button`
   border-radius: 50%;
   padding: 12px;
   display: flex;
+  opacity: ${props => (props.disabled ? 0.5 : 1)};
+
+  &:hover {
+    cursor: unset;
+  }
 `;
 
 export const StyledCloseIcon = styled(AddIcon)`
@@ -60,29 +64,3 @@ export const StyledCloseIcon = styled(AddIcon)`
   transform: rotate(45deg);
   fill: ${props => props.theme.colors.secondary};
 `;
-
-const PhoneNumberInput = ({ className, phoneNumber, onChange, onDeletePhoneNumber }) => {
-  const handleChangeValue = e => {
-    const value = e.target.value;
-    onChange({ label: phoneNumber.label, value });
-  };
-
-  const handleChangeLabel = e => {
-    const label = e.target.value;
-    onChange({ label, value: phoneNumber.value });
-  };
-
-  return (
-    <Container className={className}>
-      <ValueInput placeholder="Number" value={phoneNumber.value} onChange={handleChangeValue} />
-      <LabelIconContainer>
-        <LabelInput placeholder="Label" value={phoneNumber.label} onChange={handleChangeLabel} />
-        <DeletePhoneNumberButton onClick={onDeletePhoneNumber}>
-          <StyledCloseIcon />
-        </DeletePhoneNumberButton>
-      </LabelIconContainer>
-    </Container>
-  );
-};
-
-export default PhoneNumberInput;

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
-import * as searchActions from 'redux/modules/search';
-import * as searchSelectors from 'redux/selectors/search';
+import * as dashboardActions from 'redux/modules/dashboard';
+import * as selectors from 'redux/selectors';
 
 import { Container, InputIconWrapper, StyledInput, StyledSearchIcon } from './Search.styled';
 
@@ -36,11 +36,11 @@ const Search = ({ query, setQuery }) => {
 };
 
 const mapStateToProps = state => ({
-  query: searchSelectors.getSearchQuery(state),
+  query: selectors.getSearchQuery(state),
 });
 
 const mapDispatchToProps = {
-  setQuery: searchActions.setSearchQuery,
+  setQuery: dashboardActions.setSearchQuery,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Search);

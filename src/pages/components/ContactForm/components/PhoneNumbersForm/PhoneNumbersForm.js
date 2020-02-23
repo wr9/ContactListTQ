@@ -6,13 +6,13 @@ import { PhoneNumberInput } from './components';
 import { ReactComponent as PhoneIcon } from 'assets/icons/phone.svg';
 import { ReactComponent as AddIcon } from 'assets/icons/add.svg';
 
-export const AddPhoneNumberContainer = styled.div`
+const AddPhoneNumberContainer = styled.div`
   margin-top: 40px;
   display: flex;
   align-items: center;
 `;
 
-export const AddPhoneNumberButton = styled.button`
+const AddPhoneNumberButton = styled.button`
   margin-right: 16px;
   border: 1px solid ${props => props.theme.colors.primary};
   border-radius: 50%;
@@ -20,13 +20,13 @@ export const AddPhoneNumberButton = styled.button`
   display: flex;
 `;
 
-export const StyledAddIcon = styled(AddIcon)`
+const StyledAddIcon = styled(AddIcon)`
   width: 8px;
   height: 8px;
   fill: ${props => props.theme.colors.primary};
 `;
 
-export const AddPhoneNumberLabel = styled.div`
+const AddPhoneNumberLabel = styled.div`
   color: ${props => props.theme.colors.primary};
   font-size: 14px;
   line-height: 17px;
@@ -38,6 +38,7 @@ const PhoneNumbersForm = ({
   onChange,
   onAddPhoneNumber,
   onDeletePhoneNumber,
+  errors,
 }) => {
   return (
     <div className={className}>
@@ -47,6 +48,8 @@ const PhoneNumbersForm = ({
           phoneNumber={phoneNumber}
           onChange={onChange(index)}
           onDeletePhoneNumber={onDeletePhoneNumber(index)}
+          canBeDeleted={phoneNumbers.length > 1}
+          error={errors[index]}
           key={index}
         />
       ))}

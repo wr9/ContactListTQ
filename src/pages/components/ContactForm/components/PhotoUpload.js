@@ -5,7 +5,7 @@ import media from 'style/mediaQueries';
 import { ReactComponent as UploadIcon } from 'assets/icons/upload.svg';
 import { ReactComponent as AddIcon } from 'assets/icons/add.svg';
 
-export const StyledFileUpload = styled.label`
+const StyledFileUpload = styled.label`
   display: block;
   margin: 0 auto;
   background-color: ${props => props.theme.colors.primary};
@@ -14,7 +14,7 @@ export const StyledFileUpload = styled.label`
   background-size: contain;
   box-shadow: ${props => (props.photoSrc ? 'inset 0 0 20px 3px rgba(0, 0, 0, 0.4)' : 'none')};
   background-clip: padding-box;
-  border: 3px solid rgba(187, 196, 195, 0.3);
+  border: 3px solid rgba(${props => (props.error ? '256, 0, 0' : '187, 196, 195')}, 0.3);
   border-radius: 50%;
   width: 150px;
   height: 150px;
@@ -26,11 +26,11 @@ export const StyledFileUpload = styled.label`
   }
 `;
 
-export const FileInput = styled.input`
+const FileInput = styled.input`
   display: none;
 `;
 
-export const StyledUploadIcon = styled(UploadIcon)`
+const StyledUploadIcon = styled(UploadIcon)`
   position: absolute;
   margin: auto;
   left: 0;
@@ -39,7 +39,7 @@ export const StyledUploadIcon = styled(UploadIcon)`
   bottom: 0;
 `;
 
-export const StyledRemoveIcon = styled(AddIcon)`
+const StyledRemoveIcon = styled(AddIcon)`
   position: absolute;
   margin: auto;
   left: 0;
@@ -50,7 +50,7 @@ export const StyledRemoveIcon = styled(AddIcon)`
   fill: ${props => props.theme.colors.white};
 `;
 
-const PhotoUpload = ({ value, onAdd, onDelete }) => {
+const PhotoUpload = ({ value, onAdd, onDelete, error }) => {
   const handleClick = e => {
     if (!value) {
       return;
@@ -61,7 +61,7 @@ const PhotoUpload = ({ value, onAdd, onDelete }) => {
   };
 
   return (
-    <StyledFileUpload photoSrc={value}>
+    <StyledFileUpload photoSrc={value} error={error}>
       <FileInput type="file" accept=".jpg, .jpeg, .png" onChange={onAdd} onClick={handleClick} />
       {value ? <StyledRemoveIcon /> : <StyledUploadIcon />}
     </StyledFileUpload>

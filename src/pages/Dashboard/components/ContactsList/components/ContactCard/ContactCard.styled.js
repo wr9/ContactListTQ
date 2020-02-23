@@ -12,11 +12,27 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
 
+  &:hover {
+    cursor: pointer;
+  }
+
   @media ${media.medium} {
     position: relative;
     padding: 0;
-    flex-direction: column;
     justify-content: center;
+
+    &:hover {
+      border: 1px solid ${props => props.theme.colors.primary};
+    }
+  }
+`;
+
+export const AvatarNameContainer = styled.div`
+  display: flex;
+  align-items: center;
+
+  @media ${media.medium} {
+    flex-direction: column;
   }
 `;
 
@@ -40,16 +56,21 @@ export const StyledName = styled.div`
   }
 `;
 
-export const FavoriteButton = styled.button`
+export const ButtonsContainer = styled.div`
+  display: flex;
+  align-items: center;
   margin-left: auto;
-  margin-right: 32px;
-  fill: ${props => (props.favorite ? props.theme.colors.secondary : 'none')};
 
   @media ${media.medium} {
     position: absolute;
     top: 16px;
     left: 16px;
+    right: 16px;
   }
+`;
+
+export const FavoriteButton = styled.button`
+  fill: ${props => (props.favorite ? props.theme.colors.secondary : 'none')};
 `;
 
 export const StyledFavoriteIcon = styled(HeartIcon)`
@@ -60,13 +81,11 @@ export const StyledFavoriteIcon = styled(HeartIcon)`
 `;
 
 export const EditButton = styled.button`
-  margin-left: auto;
-  margin-right: 32px;
+  margin-left: 32px;
 
   @media ${media.medium} {
-    position: absolute;
-    top: 16px;
-    right: 16px;
+    margin-left: auto;
+    display: ${props => (props.isHovered ? 'initial' : 'none')};
   }
 `;
 
@@ -77,14 +96,11 @@ export const StyledEditIcon = styled(EditIcon)`
 `;
 
 export const DeleteButton = styled.button`
-  margin-left: auto;
-  margin-right: 32px;
+  margin-left: 32px;
 
   @media ${media.medium} {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    margin-right: 0;
+    margin-left: 26px;
+    display: ${props => (props.isHovered ? 'initial' : 'none')};
   }
 `;
 

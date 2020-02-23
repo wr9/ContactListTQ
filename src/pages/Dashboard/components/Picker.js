@@ -1,18 +1,18 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import media from 'style/mediaQueries';
-import { connect } from 'react-redux';
 
-import * as pickerActions from 'redux/modules/picker';
-import * as pickerSelectors from 'redux/selectors/picker';
+import * as selectors from 'redux/selectors';
 import { PICKER_OPTIONS } from 'consts';
 
-export const Container = styled.div`
+const Container = styled.div`
   display: flex;
   justify-content: center;
 `;
 
-export const Title = styled.button`
+const Title = styled.button`
   font-size: 14px;
   line-height: 17px;
   font-weight: 700;
@@ -24,17 +24,19 @@ export const Title = styled.button`
   }
 `;
 
-export const Divider = styled.div`
+const Divider = styled.div`
   height: 14px;
   margin: auto 30px;
-  border: 1px solid ${props => props.theme.colors.secondary};
+  border: thin solid ${props => props.theme.colors.secondary};
 `;
 
-const Picker = ({ selectedPickerOption, setPicker }) => {
+const Picker = ({ selectedPickerOption }) => {
+  const history = useHistory();
+
   const handlePickerClick = e => {
     const { value: clickedOption } = e.target;
     if (selectedPickerOption === clickedOption) return;
-    setPicker(clickedOption);
+    history.push(`/${PICKER_OPTIONS[clickedOption].queryParam}`);
   };
 
   return (
@@ -59,11 +61,7 @@ const Picker = ({ selectedPickerOption, setPicker }) => {
 };
 
 const mapStateToProps = state => ({
-  selectedPickerOption: pickerSelectors.getSelectedPickerOption(state),
+  selectedPickerOption: selectors.getSelectedPickerOption(state),
 });
 
-const mapDispatchToProps = {
-  setPicker: pickerActions.setPicker,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Picker);
+export default connect(mapStateToProps)(Picker);

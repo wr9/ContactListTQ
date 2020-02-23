@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 
 import { PhotoUpload } from './components';
 import { MobileToolbar, DesktopToolbar } from 'common';
+import { getValidationErrors } from 'utils';
 import { ReactComponent as PersonIcon } from 'assets/icons/person.svg';
 import { ReactComponent as EmailIcon } from 'assets/icons/email.svg';
 import {
@@ -18,13 +19,19 @@ import {
   StyledSaveButton,
 } from './ContactForm.styled';
 
-const ContactForm = ({ onSubmit, contact = null }) => {
+const ContactForm = ({ onSubmit, contact = null, toolbarProps = {} }) => {
   const history = useHistory();
 
   const [avatar, setAvatar] = useState(contact.avatar);
   const [fullName, setFullName] = useState(contact.fullName);
   const [email, setEmail] = useState(contact.email);
   const [phoneNumbers, setPhoneNumbers] = useState(contact.phoneNumbers);
+  const [validationErrors, setValidationErrors] = useState({
+    avatar: false,
+    fullName: false,
+    email: false,
+    phoneNumbers: [{ label: false, value: false }],
+  });
 
   const handleAvatarAdd = e => {
     const reader = new FileReader();
@@ -82,18 +89,28 @@ const ContactForm = ({ onSubmit, contact = null }) => {
       phoneNumbers,
       isFavorite: false,
     };
-    onSubmit(contact).then(id => {
-      history.push(`/${id}`);
-    });
+
+    const updatedValidationErrors = getValidationErrors(contact);
+    if (!Object.values(updatedValidationErrors).includes(true)) {
+      onSubmit(contact).then(id => {
+        history.push(`/${id}`);
+      });
+    }
+    setValidationErrors(updatedValidationErrors);
   };
 
   return (
     <div>
-      <MobileToolbar />
+      <MobileToolbar {...toolbarProps} />
       <Container>
-        <PhotoUpload value={avatar} onAdd={handleAvatarAdd} onDelete={handleAvatarDelete} />
+        <PhotoUpload
+          value={avatar}
+          onAdd={handleAvatarAdd}
+          onDelete={handleAvatarDelete}
+          error={validationErrors.avatar}
+        />
         <TextInputsContainer>
-          <DesktopToolbar />
+          <DesktopToolbar {...toolbarProps} />
           <PositionedDivider />
           <PositionedIconLabel icon={<PersonIcon />} label="full name" />
           <FlexWrapper>
@@ -101,12 +118,18 @@ const ContactForm = ({ onSubmit, contact = null }) => {
               placeholder="Full name"
               value={fullName}
               onChange={handleFullNameChange}
+              error={validationErrors.fullName}
             />
           </FlexWrapper>
           <PositionedDivider />
           <PositionedIconLabel icon={<EmailIcon />} label="email" />
           <FlexWrapper>
-            <PositionedInput placeholder="Email" value={email} onChange={handleEmailChange} />
+            <PositionedInput
+              placeholder="Email"
+              value={email}
+              onChange={handleEmailChange}
+              error={validationErrors.email}
+            />
           </FlexWrapper>
           <PositionedDivider />
           <PositionedPhoneNumbersForm
@@ -114,6 +137,7 @@ const ContactForm = ({ onSubmit, contact = null }) => {
             onChange={handlePhoneNumberChange}
             onAddPhoneNumber={handleAddPhoneNumber}
             onDeletePhoneNumber={handleDeletePhoneNumber}
+            errors={validationErrors.phoneNumbers}
           />
           <ButtonsContainer>
             <StyledCancelButton type="secondary" onClick={handleCancel}>
