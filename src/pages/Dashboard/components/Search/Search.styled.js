@@ -29,7 +29,7 @@ export const StyledInput = styled(Input)`
   padding-left: 24px;
   box-sizing: border-box;
   opacity: 1;
-  font-weight: 700;
+  font-weight: bold;
 
   @media ${media.medium} {
     font-size: 18px;

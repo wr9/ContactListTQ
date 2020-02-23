@@ -23,6 +23,7 @@ export const ValueInput = styled(Input)`
     margin-right: 30px;
     max-width: 300px;
     flex-basis: 50%;
+    flex-shrink: 0;
   }
 `;
 

@@ -56,7 +56,7 @@ export const DeleteButton = styled.button`
   margin-left: auto;
   display: flex;
   align-items: center;
-  color: #adb8b6;
+  color: ${props => props.theme.colors.text};
   font-size: 14px;
   line-height: 17px;
 `;

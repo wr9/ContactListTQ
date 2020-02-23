@@ -34,7 +34,7 @@ export const StyledAvatar = styled(Avatar)`
 
 export const StyledName = styled.div`
   margin-left: 24px;
-  color: #adb8b6;
+  color: ${props => props.theme.colors.text};
   font-size: 21px;
   font-weight: bold;
   line-height: 28px;
@@ -53,9 +53,6 @@ export const InfoContainer = styled.div`
 
 export const PositionedDivider = styled(Divider)`
   margin: 22px 4px;
-
-  @media ${media.medium} {
-  }
 `;
 
 export const ContactContainer = styled.div`
@@ -77,12 +74,13 @@ export const EmailContainer = styled.div`
 export const EmailLabel = styled(IconLabel)`
   @media ${media.medium} {
     flex-basis: 30%;
+    flex-shrink: 0;
   }
 `;
 
 export const StyledEmail = styled.div`
   margin-left: 30px;
-  color: #adb8b6;
+  color: ${props => props.theme.colors.text};
   font-size: 16px;
 
   @media ${media.medium} {
@@ -105,6 +103,7 @@ export const PhoneNumbersLabel = styled(IconLabel)`
   @media ${media.medium} {
     margin-bottom: 0;
     flex-basis: 30%;
+    flex-shrink: 0;
   }
 `;
 
@@ -123,14 +122,14 @@ export const PhoneNumberContainer = styled.div`
 
 export const PhoneNumberLabel = styled.div`
   flex-basis: 40%;
-  color: #adb8b6;
+  color: ${props => props.theme.colors.text};
   font-size: 14px;
   font-weight: bold;
   text-transform: uppercase;
 `;
 
 export const PhoneNumberValue = styled.a`
-  color: #adb8b6;
+  color: ${props => props.theme.colors.text};
   font-size: 16px;
   line-height: 20px;
 `;

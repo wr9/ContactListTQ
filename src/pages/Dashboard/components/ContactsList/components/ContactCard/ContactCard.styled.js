@@ -46,7 +46,7 @@ export const StyledAvatar = styled(Avatar)`
 `;
 
 export const StyledName = styled.div`
-  color: #adb8b6;
+  color: ${props => props.theme.colors.text};
   font-size: 14px;
   font-weight: bold;
   margin-left: 24px;

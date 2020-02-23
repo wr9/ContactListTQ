@@ -15,9 +15,9 @@ export const getContactsArray = createSelector([getContacts], contacts =>
 export const getFavoriteFilteredContacts = createSelector(
   [getContactsArray, getSelectedPickerOption],
   (contacts, selectedPickerOption) =>
-    contacts.filter(
-      contact => selectedPickerOption === PICKER_OPTIONS.ALL_CONTACTS.value || contact.isFavorite,
-    ),
+    selectedPickerOption === PICKER_OPTIONS.ALL_CONTACTS.value
+      ? contacts
+      : contacts.filter(contact => contact.isFavorite),
 );
 
 export const getDashboardContacts = createSelector(

@@ -29,13 +29,13 @@ export const Dialog = styled.div`
 
 export const StyledTitle = styled.div`
   margin: 20px 0 20px 30px;
-  color: #adb8b6;
+  color: ${props => props.theme.colors.text};
   font-size: 16px;
   font-weight: bold;
   line-height: 19px;
 `;
 
-export  const StyledDivider = styled(Divider)`
+export const StyledDivider = styled(Divider)`
   border: thin solid #dcdcdc;
 `;
 
@@ -52,7 +52,7 @@ export const DialogContent = styled.div`
 `;
 
 export const StyledText = styled.div`
-  color: #adb8b6;
+  color: ${props => props.theme.colors.text};
   font-size: 16px;
   line-height: 28px;
   margin-bottom: 50px;

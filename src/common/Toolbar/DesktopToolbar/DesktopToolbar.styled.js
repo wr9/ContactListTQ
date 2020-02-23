@@ -27,7 +27,7 @@ export const StyledBackArrowIcon = styled(BackArrowIcon)`
 
 export const Title = styled.div`
   margin-left: 20px;
-  color: #adb8b6;
+  color: ${props => props.theme.colors.text};
   font-size: 16px;
   font-weight: bold;
   line-height: 19px;
@@ -59,7 +59,7 @@ export const DeleteButton = styled.button`
   margin-left: auto;
   display: flex;
   align-items: center;
-  color: #adb8b6;
+  color: ${props => props.theme.colors.text};
   font-size: 14px;
   line-height: 17px;
 `;

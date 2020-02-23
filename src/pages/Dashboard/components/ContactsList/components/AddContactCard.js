@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 
 import { ReactComponent as AddIcon } from 'assets/icons/add.svg';
 
-export const Container = styled.button`
+const Container = styled.button`
   border: 1px dashed ${props => props.theme.colors.primary};
   border-radius: 4px;
   opacity: 0.5;
@@ -18,7 +18,7 @@ export const Container = styled.button`
   }
 `;
 
-export const StyledAddIcon = styled(AddIcon)`
+const StyledAddIcon = styled(AddIcon)`
   margin-left: 24px;
   fill: ${props => props.theme.colors.primary};
 
@@ -27,11 +27,11 @@ export const StyledAddIcon = styled(AddIcon)`
   }
 `;
 
-export const LabelWrapper = styled.div`
+const LabelWrapper = styled.div`
   margin-left: 18px;
   color: ${props => props.theme.colors.primary};
   font-size: 14px;
-  font-weight: 400;
+  font-weight: normal;
   line-height: 17px;
 
   @media ${media.medium} {

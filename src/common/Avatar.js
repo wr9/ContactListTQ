@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export const StyledAvatar = styled.div`
+const StyledAvatar = styled.div`
   background-image: url(${props => props.photoSrc});
   background-size: contain;
   background-clip: padding-box;

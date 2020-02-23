@@ -4,7 +4,7 @@ import media from 'style/mediaQueries';
 
 import LogoSrc from "assets/Logo.svg";
 
-export const Container = styled.div`
+const Container = styled.div`
   height: 50px;
   background-image: linear-gradient(
     182.65deg,
@@ -20,11 +20,11 @@ export const Container = styled.div`
   }
 `;
 
-export const Logo = styled.img`
+const Logo = styled.img`
   margin-top: auto;
 `;
 
-export const BottomAccent = styled.div`
+const BottomAccent = styled.div`
   height: 7px;
   background-color: ${props => props.theme.colors.white};
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);

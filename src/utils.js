@@ -1,20 +1,20 @@
 const localStorageKey = 'contacts';
 
 export const loadContacts = () =>
-  new Promise((resolve, reject) => {
+  new Promise(resolve => {
     const contacts = JSON.parse(localStorage.getItem(localStorageKey)) || {};
     resolve(contacts);
   });
 
 export const loadContact = id =>
-  new Promise((resolve, reject) => {
+  new Promise(resolve => {
     const contacts = JSON.parse(localStorage.getItem(localStorageKey)) || {};
     const contact = contacts[id] || {};
     resolve(contact);
   });
 
 export const createContact = contact =>
-  new Promise((resolve, reject) => {
+  new Promise(resolve => {
     var dummyUniqueId = Date.now();
     const contacts = JSON.parse(localStorage.getItem(localStorageKey)) || {};
     contacts[dummyUniqueId] = { ...contact, id: dummyUniqueId, isFavorite: false };
@@ -23,7 +23,7 @@ export const createContact = contact =>
   });
 
 export const updateContact = (id, updatedContact) =>
-  new Promise((resolve, reject) => {
+  new Promise(resolve => {
     const contacts = JSON.parse(localStorage.getItem(localStorageKey)) || {};
     contacts[id] = { ...updatedContact, id };
     localStorage.setItem(localStorageKey, JSON.stringify(contacts));
@@ -31,7 +31,7 @@ export const updateContact = (id, updatedContact) =>
   });
 
 export const deleteContact = id =>
-  new Promise((resolve, reject) => {
+  new Promise(resolve => {
     const contacts = JSON.parse(localStorage.getItem(localStorageKey)) || {};
     contacts[id] = null;
     localStorage.setItem(localStorageKey, JSON.stringify(contacts));
@@ -44,7 +44,7 @@ const validateEmail = email => {
 };
 
 const validatePhoneNumber = phoneNumber => {
-  const phoneNumberValueValidator = /^\+{0,1}[\d]{6,}$/;
+  const phoneNumberValueValidator = /\+{0,1}[\d]{6,}/;
   return phoneNumberValueValidator.test(phoneNumber.value);
 };
 

@@ -10,7 +10,7 @@ const Label = styled.div`
   margin-left: 15px;
   color: ${props => props.theme.colors.primary};
   font-size: ${props => props.fontSize};
-  font-weight: 700;
+  font-weight: bold;
 `;
 
 const IconLabel = ({ icon, label, className, fontSize = '14px' }) => {

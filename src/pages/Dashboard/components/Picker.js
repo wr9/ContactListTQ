@@ -15,7 +15,7 @@ const Container = styled.div`
 const Title = styled.button`
   font-size: 14px;
   line-height: 17px;
-  font-weight: 700;
+  font-weight: bold;
   color: ${props => (props.isSelected ? props.theme.colors.primary : props.theme.colors.secondary)};
 
   @media ${media.medium} {
