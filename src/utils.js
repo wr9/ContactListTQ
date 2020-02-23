@@ -44,7 +44,7 @@ const validateEmail = email => {
 };
 
 const validatePhoneNumber = phoneNumber => {
-  const phoneNumberValueValidator = /\+{0,1}[\d]{6,}/;
+  const phoneNumberValueValidator = /^\+{0,1}[\d]{6,}$/;
   return phoneNumberValueValidator.test(phoneNumber.value);
 };
 
