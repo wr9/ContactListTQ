@@ -1,4 +1,4 @@
-This is an interview task - Contact List web applicaton.
+This is an interview task - Contact List web application.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
